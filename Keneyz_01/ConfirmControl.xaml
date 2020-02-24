@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Keneyz_01.ConfirmControl"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="50" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Horoscope"/>
+        <DatePicker Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="250,5,250,5" SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="340,0,340,0" Content="Confirm" Command="{Binding ConfirmCommand}"/>
+
+        <StackPanel Grid.ColumnSpan="2" Margin="202,1.2,198,-77.4" Grid.Row="6">
+            <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Age, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Chinese, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Western, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
