@@ -11,9 +11,6 @@ namespace Keneyz_01
     class User
     {
         private DateTime _dateOfBirth;
-        // private int _age;
-        // private string _western;
-        // private string _chinese;
 
         public DateTime DateOfBirth
         {
