@@ -25,38 +25,13 @@ namespace Keneyz_01
             }
         }
 
-        public string Age
-        {
-            get => _user.DateOfBirth == default ? "" : $"Your age: {_user.Age}";
+        public string Age => _user.DateOfBirth == default ? "" : $"Your age: {_user.Age}";
 
-            set
-            {
-                _user.Age = int.Parse(value);
-                OnPropertyChanged();
-            }
-        }
+        public string Western => _user.DateOfBirth == default ? "" : $"Your western sign: {_user.Western}";
 
-        public string Western
-        {
-            get => _user.DateOfBirth == default ? "" : $"Your western sign: {_user.Western}";
-            set
-            {
-                _user.Western = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Chinese => _user.DateOfBirth == default ? "" : $"Your chinese sign: {_user.Chinese}";
 
-        public string Chinese
-        {
-            get => _user.DateOfBirth == default ? "" : $"Your chinese sign: {_user.Chinese}";
-            set
-            {
-                _user.Chinese = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private async void Process()
+        private void Process()
         {
             if (_user.DateOfBirth.Year < DateTime.Today.Year - 135 || _user.DateOfBirth > DateTime.Today)
             {
@@ -69,11 +44,6 @@ namespace Keneyz_01
                 {
                     MessageBox.Show("Happy Birthday");
                 }
-
-                Age = _user.AgeCount().ToString();
-                Western = _user.WesternCount();
-                Chinese = _user.ChineseCount();
-
             }
 
             OnPropertyChanged(nameof(Age));
@@ -81,19 +51,10 @@ namespace Keneyz_01
             OnPropertyChanged(nameof(Chinese));
         }
 
-        public RelayCommand<object> ConfirmCommand
-        {
-            get
-            {
-                return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(o =>
+        public RelayCommand<object> ConfirmCommand => _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(o =>
                            Process(), o => CanExecuteCommand()));
-            }
-        }
 
-        private bool CanExecuteCommand()
-        {
-           return  !string.IsNullOrWhiteSpace(_user.DateOfBirth.ToString());
-        }
+        private bool CanExecuteCommand() => !string.IsNullOrWhiteSpace(_user.DateOfBirth.ToString());
 
         public event PropertyChangedEventHandler PropertyChanged;
 

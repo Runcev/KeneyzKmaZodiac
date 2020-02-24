@@ -11,33 +11,28 @@ namespace Keneyz_01
     class User
     {
         private DateTime _dateOfBirth;
-        private int _age;
-        private string _western;
-        private string _chinese;
+        // private int _age;
+        // private string _western;
+        // private string _chinese;
 
         public DateTime DateOfBirth
         {
             get => _dateOfBirth;
-            set => _dateOfBirth = value;
+            set
+            {
+                _dateOfBirth = value;
+                Age = AgeCount();
+                Chinese = ChineseCount();
+                Western = WesternCount();
+            }
+            
         }
 
-        public int Age
-        {
-            get => _age;
-            set => _age = value;
-        }
+        public int Age { get; private set; }
 
-        public string Western
-        {
-            get => _western; 
-            set => _western = value;
-        }
+        public string Western { get; private set; }
 
-        public string Chinese
-        {
-            get => _chinese;
-            set => _chinese = value;
-        }
+        public string Chinese { get; private set; }
 
         public int AgeCount()
         {
@@ -55,8 +50,6 @@ namespace Keneyz_01
 
         public string WesternCount()
         {
-            string result = "";
-
             string[] zodiacName =
             {
                 "Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini",
@@ -71,18 +64,10 @@ namespace Keneyz_01
 
             if (_dateOfBirth.Day < zodiacDate[_dateOfBirth.Month - 1])
             {
-                result = zodiacName[_dateOfBirth.Month - 1];
-            }
-            else
-            {
-                if (_dateOfBirth.Month == 12)
-                {
-                    _dateOfBirth.AddMonths(-12);
-                }
-                result = zodiacName[0];
+                return zodiacName[_dateOfBirth.Month - 1];
             }
 
-            return result;
+            return  _dateOfBirth.Month == 12 ? zodiacName[0] : zodiacName[_dateOfBirth.Month];
         }
 
         public string ChineseCount()
