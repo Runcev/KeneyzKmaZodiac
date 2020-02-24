@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,8 +32,10 @@ namespace Keneyz_01
 
         public string Chinese => _user.DateOfBirth == default ? "" : $"Your chinese sign: {_user.Chinese}";
 
-        private void Process()
+        private async void Process()
         {
+            await Task.Run(() => Thread.Sleep(1000));
+
             if (_user.DateOfBirth.Year < DateTime.Today.Year - 135 || _user.DateOfBirth > DateTime.Today)
             {
                 MessageBox.Show("Wrong date.\n Try again");
